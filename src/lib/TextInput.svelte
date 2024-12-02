@@ -1,20 +1,27 @@
 <!-- Tämän komponentin tarkoitus on luoda tekstikenttä, jota voidaan muokata haluamaksi -->
-
 <script>
-  export let label;
-  export let placeholder;
+  export let label = '';
+  export let placeholder = '';
   export let minlength = 2;
-  export let maxlength = 20;
+  export let maxlength = null;
   export let virhe = 'Virheellinen syöte';
   export let valid = true;
   export let value = '';
+  export let type = '';
+  import { fade } from 'svelte/transition';
 
   let showError = false;
 
   // Validoidaan input-arvo
   function validateInput() {
-    valid = value.length >= minlength && value.length <= maxlength;
-    showError = !valid; // Näytetään virheviesti vain, jos arvo ei ole validi
+    if (type === 'date') {
+      valid = value !== '';
+    } else {
+      valid =
+        value.length >= minlength &&
+        (maxlength === null || value.length <= maxlength);
+    }
+    showError = !valid;
   }
 
   function handleInput(event) {
@@ -23,7 +30,8 @@
   }
 
   function handleBlur() {
-    showError = value.length > 0 && !valid; // Näytetään virheviesti vain, jos kentässä on käyty ja arvo ei ole validi
+    // Näytetään virheviesti vain, jos kentässä on käyty ja arvo ei ole validi
+    showError = value.length > 0 && !valid;
   }
 
   function closeModal() {
@@ -33,18 +41,31 @@
 
 <label>
   {label}
-  <input
-    {placeholder}
-    bind:value
-    {maxlength}
-    {minlength}
-    on:input={handleInput}
-    on:blur={handleBlur}
-  />
+  {#if type === 'date'}
+    <input
+      type="date"
+      {placeholder}
+      bind:value
+      {maxlength}
+      {minlength}
+      on:input={handleInput}
+      on:blur={handleBlur}
+    />
+  {:else}
+    <input
+      type="text"
+      {placeholder}
+      bind:value
+      {maxlength}
+      {minlength}
+      on:input={handleInput}
+      on:blur={handleBlur}
+    />
+  {/if}
 </label>
 
 {#if showError}
-  <div class="modal">
+  <div class="modal" in:fade={{ duration: 200 }}>
     <div class="modal-content">
       <span class="close" on:click={closeModal}>&times;</span>
       <p>{virhe}</p>

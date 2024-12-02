@@ -2,7 +2,6 @@
   import { name, location, tasks, date } from '../store.js';
 
   function lahetaTiedot() {
-    // Lähetä yhteenvedon henkilökunnan tietokantaan
     console.log('Yhteenveto lähetetty:', $name, $location, $date, $tasks);
   }
 </script>
@@ -48,7 +47,7 @@
   button {
     font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
     width: 100%;
-    margin: 10px 0;
+    margin: 5px 0;
     border: white solid 0.5px;
     border-radius: 10px;
     cursor: pointer;

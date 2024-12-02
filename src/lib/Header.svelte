@@ -2,12 +2,13 @@
 
 <script>
   import '../app.css';
-  export let name = 'WorkLog Pro v1.0.0';
+  export let name = 'WorkLog Pro v1.0.1';
+  export let resetApp;
 </script>
 
 <body>
   <header>
-    <p>{name}</p>
+    <p on:click={resetApp}>{name}</p>
   </header>
 </body>
 
@@ -30,5 +31,6 @@
 
   p {
     margin: 30px;
+    cursor: pointer;
   }
 </style>

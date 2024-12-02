@@ -7,6 +7,7 @@
   import Information from './lib/Information.svelte';
   import Diary from './lib/Diary.svelte';
   import Summary from './lib/Summary.svelte';
+  import { fade } from 'svelte/transition';
 
   const role = writable(null);
   const step = writable(1);
@@ -23,17 +24,25 @@
     step.update((n) => Math.max(n - 1, 1));
   }
 
-  // Tarkistaetaan, onko Diaryssa merkintöjä
+  export function resetApp() {
+    role.set(null);
+    step.set(1);
+  }
+
   const diaryHasEntries = writable(false);
 </script>
 
 <main>
-  <!-- Header komponentin asettaminen sivuston alkuun -->
-  <Header />
+  <Header {resetApp} />
 
   {#if $role === null}
-    <div class="login-box">
-      <img class="kuva" src="/WorkLog_logo.svg" alt="Logo" />
+    <div class="login-box" in:fade={{ duration: 600 }}>
+      <img
+        class="kuva"
+        src="/WorkLog_logo.svg"
+        alt="WorklogPro Logo"
+        in:fade={{ duration: 1200 }}
+      />
       <p>Smoother Work Experience for Businesses</p>
       <h2>Kirjaudu sisään</h2>
       <button on:click={() => handleLogin('employee')}>Työntekijä</button>
@@ -49,11 +58,9 @@
       {/if}
     {:else if $step === 3}
       <Summary />
-      <button on:click={() => step.set(1)}>Aloita alusta</button>
     {/if}
   {/if}
 
-  <!-- // Slotin käyttö footer komponentissa -->
   <Footer>Copyright © Tommi Hallila. 2024.</Footer>
 </main>
 

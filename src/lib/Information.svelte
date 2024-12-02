@@ -48,10 +48,11 @@
         virhe="Paikkakunnan nimessä tulee olla vähintään kaksi merkkiä."
       />
       <TextInput
+        type="date"
         bind:value={userDate}
         valid={validDate}
         label="Päivämäärä: "
-        placeholder="Kirjoita tähän päivämäärä"
+        placeholder="Valitse päivämäärä"
         virhe="Kirjoita oikea päivämäärä."
       />
     </form>
