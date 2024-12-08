@@ -14,7 +14,7 @@
   <h3>Tehdyt työt</h3>
   <ul>
     {#each $tasks as task}
-      <li>{task}</li>
+      <li>{task.text}</li>
     {/each}
   </ul>
   <button on:click={lahetaTiedot}>Lähetä työnjohdolle</button>

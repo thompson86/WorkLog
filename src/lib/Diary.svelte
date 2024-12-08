@@ -1,27 +1,36 @@
 <script>
   import '../app.css';
+  import { fade } from 'svelte/transition';
   import { writable } from 'svelte/store';
   import ProgressBar from './ProgressBar.svelte';
   import Summary from './Summary.svelte';
   import { tasks } from '../store.js';
 
+  // Luodaan merkintälista ja muut tarvittavat muuttujat
   let entries = writable([]);
   let newEntry = '';
   let showSummary = false;
 
+  // Funktio uuden merkinnän lisäämiseen
   function addEntry() {
     if (newEntry.trim()) {
-      entries.update((currentEntries) => [...currentEntries, newEntry.trim()]);
+      const entry = {
+        id: Date.now(), // Yksilöllinen ID
+        text: newEntry.trim(),
+      };
+      entries.update((currentEntries) => [...currentEntries, entry]);
       newEntry = '';
     }
   }
 
-  function removeEntry(index) {
+  // Funktio merkinnän poistamiseen
+  function removeEntry(id) {
     entries.update((currentEntries) =>
-      currentEntries.filter((_, i) => i !== index)
+      currentEntries.filter((entry) => entry.id !== id)
     );
   }
 
+  // Siirrytään seuraavaan vaiheeseen
   function handleNext() {
     tasks.set($entries); // Tallennetaan merkinnät storeen
     showSummary = true;
@@ -41,14 +50,15 @@
     <button on:click={addEntry}>Lisää merkintä</button>
 
     <ul>
-      {#each $entries as entry, index}
-        <li>
-          <span>{entry}</span>
-          <button on:click={() => removeEntry(index)}>X</button>
+      {#each $entries as { id, text } (id)}
+        <li transition:fade>
+          <span>{text}</span>
+          <button on:click={() => removeEntry(id)}>X</button>
         </li>
       {/each}
     </ul>
 
+    <!-- Näytä "Seuraava"-painike vain, jos merkintöjä on -->
     {#if $entries.length > 0}
       <button on:click={handleNext}>Seuraava</button>
     {/if}
@@ -94,11 +104,11 @@
     box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.5);
     padding: 10px;
     margin-top: 1.5rem;
+    transition: background-color 0.3s ease;
   }
 
   button:hover {
     background-color: var(--main-color);
-    transition: ease-in-out 1s;
     color: var(--bg-color);
   }
 
@@ -156,6 +166,11 @@
     margin: 0;
     top: 5px;
     right: 5px;
+    transition: color 0.3s ease;
+  }
+
+  li button:hover {
+    color: red;
   }
 
   li span {

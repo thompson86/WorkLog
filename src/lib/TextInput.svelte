@@ -74,6 +74,9 @@
 {/if}
 
 <style>
+  input[type='date']::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Kääntää värin valkoiseksi */
+  }
   label {
     width: 100%;
     margin: 15px 0;

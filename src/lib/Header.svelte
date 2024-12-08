@@ -2,7 +2,7 @@
 
 <script>
   import '../app.css';
-  export let name = 'WorkLog Pro v1.0.1';
+  export let name = 'WorkLog Pro v1.0.2';
   export let resetApp;
 </script>
 
