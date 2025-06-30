@@ -32,23 +32,26 @@
   }
 
   .tooltip-text {
-    visibility: hidden;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 5px;
-    padding: 5px;
     position: absolute;
-    z-index: 1;
-    bottom: 125%; /* Sijoita tooltip elementin yläpuolelle */
+    bottom: -40px;
     left: 50%;
     transform: translateX(-50%);
+    background: rgba(20, 20, 20, 0.8);
+    backdrop-filter: blur(10px);
+    color: var(--text-color);
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    border-radius: 8px;
+    white-space: nowrap;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     opacity: 0;
-    transition: opacity 0.3s;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
   }
 
   .tooltip:hover .tooltip-text {
-    visibility: visible;
     opacity: 1;
+    pointer-events: auto;
   }
 </style>

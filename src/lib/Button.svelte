@@ -1,9 +1,11 @@
-<!-- Tämä komponentti vastaa napin tyylittelystä. -->
 <script>
+  export let type = 'button';
   export let disabled = false;
 </script>
 
-<button {disabled}><slot></slot> </button>
+<button {type} {disabled} on:click>
+  <slot />
+</button>
 
 <style>
   button {
@@ -22,20 +24,16 @@
     box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.5);
     padding: 15px;
     margin-bottom: 1rem;
+    transition: all 0.3s ease;
   }
-  button:hover {
-    transition: ease-in-out 1s;
+
+  button:hover:enabled {
     background-color: var(--main-color);
     color: var(--text-color);
   }
 
   button:disabled {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
-      sans-serif;
-    background-color: transparent;
+    opacity: 0.5;
     cursor: not-allowed;
-  }
-  button:disabled:hover {
-    background-color: var(--secbg-color);
   }
 </style>

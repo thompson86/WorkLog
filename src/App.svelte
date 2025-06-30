@@ -45,7 +45,7 @@
       />
       <p>Smoother Work Experience for Businesses</p>
       <h2>Kirjaudu sisään</h2>
-      <button on:click={() => handleLogin('employee')}>Työntekijä</button>
+      <Button on:click={() => handleLogin('employee')}>Työntekijä</Button>
       <Button disabled>Työnantaja</Button>
     </div>
   {:else if $role === 'employee'}
@@ -61,7 +61,7 @@
     {/if}
   {/if}
 
-  <Footer>Copyright © Tommi Hallila. 2024.</Footer>
+  <Footer>Copyright © Tommi Hallila. 2025.</Footer>
 </main>
 
 <style>

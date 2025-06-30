@@ -43,7 +43,7 @@ Jarkko Immonen
 Harjoitustyötä ideoin aluksi keräämällä inspiraatiota ympäröivästä maailmasta ja kehittämällä ratkaisua, joka helpottaisi arkea. Kirjassa _Tee itsestäsi mestariajattelija_ (Lauri Järvilehto) esitetyt luovan prosessin vaiheet toimivat työn suunnittelun pohjana.
 
 **Tausta:**  
-Rakennusalalta (Sairaala Nova -projekti, Lumon Oy:n tehtävät) saatu kokemus yhdistettiin modernin teknologian mahdollisuuksiin. Tavoitteena oli:
+Rakennusalalta vuokratyöntekijänä (Sairaala Nova -projekti, Lumon Oy:n tehtävät) saatu kokemus yhdistettiin modernin teknologian mahdollisuuksiin. Tavoitteena oli:
 
 - Helpottaa työntekijöiden reflektointia.
 - Tehdä töiden kirjaamisesta helppoa ja yksinkertaista.

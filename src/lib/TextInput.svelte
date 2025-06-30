@@ -30,7 +30,6 @@
   }
 
   function handleBlur() {
-    // Näytetään virheviesti vain, jos kentässä on käyty ja arvo ei ole validi
     showError = value.length > 0 && !valid;
   }
 
@@ -75,7 +74,7 @@
 
 <style>
   input[type='date']::-webkit-calendar-picker-indicator {
-    filter: invert(1); /* Kääntää värin valkoiseksi */
+    filter: invert(1);
   }
   label {
     width: 100%;
@@ -84,12 +83,21 @@
 
   input {
     width: 100%;
-    margin: 15px 0;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    background: var(--bg-color);
+    margin: 10px 0;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--main-color);
+    background: rgba(255, 255, 255, 0.05);
     color: var(--text-color);
+    font-size: 1rem;
+    backdrop-filter: blur(6px);
+    transition: border 0.3s ease;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: var(--main-color);
+    background: rgba(255, 255, 255, 0.1);
   }
 
   .modal {
