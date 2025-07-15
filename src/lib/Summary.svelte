@@ -1,6 +1,11 @@
 <script>
+  import Modal from './Modal.svelte';
   import { name, location, site, date, tasks } from '../store.js';
   import { supabase } from '../supabaseClient.js';
+
+  let showModal = false;
+  let modalMessage = '';
+  let modalType = 'success';
 
   async function lahetaTiedot() {
     const payload = {
@@ -15,10 +20,18 @@
     const { error } = await supabase.from('worklogs').insert(payload);
 
     if (error) {
-      alert('Virhe tallennuksessa: ' + error.message);
+      modalMessage = 'Virhe tallennuksessa: ' + error.message;
+      modalType = 'error';
     } else {
-      alert('Yhteenveto tallennettu onnistuneesti!');
+      modalMessage = 'Yhteenveto tallennettu onnistuneesti!';
+      modalType = 'success';
     }
+
+    showModal = true;
+  }
+
+  function closeModal() {
+    showModal = false;
   }
 </script>
 
@@ -35,6 +48,9 @@
     {/each}
   </ul>
   <button on:click={lahetaTiedot}>Lähetä työnjohdolle</button>
+  {#if showModal}
+    <Modal message={modalMessage} type={modalType} onClose={closeModal} />
+  {/if}
 </div>
 
 <style>

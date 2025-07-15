@@ -4,6 +4,12 @@ Kaikki merkittävät muutokset tähän projektiin dokumentoidaan tässä tiedost
 
 Projekti: **WorkLogPro**
 
+## [1.0.3] – 2025-07-15
+
+### Muutokset
+
+- Lisätty hyväksymis-/virhe modali-ikkuna, kun tiedot on lähetetty tietokantaan.
+
 ## [1.0.2] – 2025-06-30
 
 ### Muutokset
