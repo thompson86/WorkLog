@@ -43,7 +43,7 @@
         alt="WorklogPro Logo"
         in:fade={{ duration: 1200 }}
       />
-      <p>Smoother Work Experience for Businesses</p>
+      <p>Less Stess, More Progress</p>
       <h2>Kirjaudu sisään</h2>
       <Button on:click={() => handleLogin('employee')}>Työntekijä</Button>
       <Button disabled>Työnantaja</Button>
